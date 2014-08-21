@@ -1,9 +1,7 @@
-# Zumba&reg; Angular Waypoints
-
 **Angular Waypoints** is an AngularJS module for working with [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/).
 
 ## Dependencies
-* [AngularJS](https://angularjs.org/) :trollface:
+* [AngularJS](https://angularjs.org/)
 * [jQuery](http://jquery.com/) &amp; [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/)
 * [lodash](http://lodash.com/)
 
@@ -28,8 +26,13 @@ The above example from the jQuery waypoints homepage works well for most situati
 With Angular Waypoints, your template becomes declarative.  For example, you could toggle between two CSS classes (`sticky` and `notSticky`) by attatching a waypoint and using `ngClass` to listen to the waypoint flags:
 
 ```html
-<div zum-waypoint="waypoints" down="flags.on" up="flags.off">
-<div ng-class="{ sticky : waypoints.flags.on, notSticky : waypoints.flags.off }">
+<div zum-waypoint="waypoints"
+    down="flags.on"
+    up="flags.off"></div>
+<div ng-class="{
+    sticky : waypoints.flags.on,
+    notSticky : waypoints.flags.off
+}"></div>
 ```
 
 Angular Waypoints works by taking the control of the waypoints callback away from the developer.  When a waypoint is triggered by scrolling the page, the directive executes an internal callback that toggles a boolean flag based on the direction of the scroll.  These flags can be used by other directives (like `ngClass` or `ngIf`) to modify application state.
@@ -60,7 +63,10 @@ Attach the `zum-waypoint` directive to each element for which you want to trigge
 `up`, `down`, and `offset` are HTML attributes that are bound to the isolated scope of the directive.  Here is a full example of a template:
 
 ```html
-<div zum-waypoint="waypoints" down="name.down" up="name.up" offset="20%"></div>
+<div zum-waypoint="waypoints"
+    down="name.down"
+    up="name.up"
+    offset="20%"></div>
 ```
 #### Breakdown of the above example
 
@@ -75,7 +81,9 @@ Notice that the examples have included a "namespace" for the flags (in the first
 If you do not use a namespace, the directive will store the flags inside a namespace called `globals`:
 
 ```html
-<div zum-waypoint="waypoints" down="someFlag" up="anotherFlag"></div>
+<div zum-waypoint="waypoints"
+    down="someFlag"
+    up="anotherFlag"></div>
 ```
 
 The above flags would be accessed via `waypoints.globals.someFlag` and `waypoints.globals.anotherFlag`
