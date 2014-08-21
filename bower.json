@@ -1,0 +1,48 @@
+{
+  "name": "angular-waypoints",
+  "version": "1.0.0",
+  "description": "An AngularJS module for working with jQuery Waypoints",
+  "main": "dist/angular-waypoints.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "gruntfile.js",
+    "package.json",
+    "grunt"
+  ],
+  "keywords": [
+    "angular",
+    "waypoints",
+    "jquery",
+    "scroll"
+  ],
+  "authors": [
+    {
+      "name": "Stephen Young",
+      "email": "stephen.young@zumba.com",
+      "homepage": "https://github.com/young-steveo"
+    }
+  ],
+  "homepage": "http://tech.zumba.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zumba/angular-waypoints.git"
+  },
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "private": false,
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "jquery-waypoints": "~2.0.5",
+    "angular": "~1.2.22",
+    "jquery": "~2.1.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.22"
+  }
+}

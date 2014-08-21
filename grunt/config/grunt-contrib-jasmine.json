@@ -1,0 +1,17 @@
+{
+    "jasmine" : {
+        "tests" : {
+            "src" : "dist/angular-waypoints.js",
+            "options" : {
+                "specs" : "test/spec/*.spec.js",
+                "vendor" : [
+                    "bower_components/jquery/dist/jquery.js",
+                    "bower_components/jquery-waypoints/waypoints.js",
+                	"bower_components/lodash/dist/lodash.js",
+                	"bower_components/angular/angular.js",
+                    "bower_components/angular-mocks/angular-mocks.js"
+                ]
+            }
+        }
+    }
+}

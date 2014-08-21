@@ -1,0 +1,13 @@
+{
+    "wrap" : {
+        "files" : {
+            "src" : ["dist/angular-waypoints.raw.js"],
+            "dest" : "dist/angular-waypoints.js",
+            "options" : {
+                "seperator" : "\n",
+                "indent" : "    ",
+                "wrapper" : null
+            }
+        }
+    }
+}
