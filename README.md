@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zumba/angular-waypoints.svg?branch=master)](https://travis-ci.org/zumba/angular-waypoints)
+
 **Angular Waypoints** is an AngularJS module for working with [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/).
 
 ## Dependencies
