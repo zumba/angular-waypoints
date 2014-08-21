@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Angular Waypoints by zumba</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/zumba/angular-waypoints">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Angular Waypoints</h1>
+            <h2>An AngularJS module for working with jQuery Waypoints</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/zumba/angular-waypoints/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/zumba/angular-waypoints/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <p><strong>Angular Waypoints</strong> is an AngularJS module for working with <a href="http://imakewebthings.com/jquery-waypoints/">jQuery Waypoints</a>.</p>
+
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<ul>
+<li><a href="https://angularjs.org/">AngularJS</a></li>
+<li>
+<a href="http://jquery.com/">jQuery</a> &amp; <a href="http://imakewebthings.com/jquery-waypoints/">jQuery Waypoints</a>
+</li>
+<li><a href="http://lodash.com/">lodash</a></li>
+</ul><h2>
+<a name="non-angular-waypoints-example" class="anchor" href="#non-angular-waypoints-example"><span class="octicon octicon-link"></span></a>Non-Angular Waypoints Example</h2>
+
+<blockquote>
+<p>Waypoints is a jQuery plugin that makes it easy to execute a function whenever you scroll to an element.</p>
+</blockquote>
+
+<div class="highlight highlight-js"><pre><span class="c1">// example from http://imakewebthings.com/jquery-waypoints/</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.thing'</span><span class="p">).</span><span class="nx">waypoint</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">direction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s1">'Top of thing hit top of viewport.'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>The above example from the jQuery waypoints homepage works well for most situations.  However, if you were to put the above code inside an AngularJS directive, you end up with a couple of drawbacks:</p>
+
+<ul>
+<li>The waypoints implementation is hidden from the HTML.  All you know is that a directive is doing <em>something</em>, but you do not know the contents of the callback function.</li>
+<li>If you modify a scope property in your callback, you'll need to manually call <code>$scope.$digest</code> to let angular process this new information.</li>
+</ul><h2>
+<a name="angular-waypoints-example" class="anchor" href="#angular-waypoints-example"><span class="octicon octicon-link"></span></a>Angular Waypoints Example</h2>
+
+<p>With Angular Waypoints, your template becomes declarative.  For example, you could toggle between two CSS classes (<code>sticky</code> and <code>notSticky</code>) by attatching a waypoint and using <code>ngClass</code> to listen to the waypoint flags:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">zum-waypoint=</span><span class="s">"waypoints"</span>
+    <span class="na">down=</span><span class="s">"flags.on"</span>
+    <span class="na">up=</span><span class="s">"flags.off"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">ng-class=</span><span class="s">"{</span>
+<span class="s">    sticky : waypoints.flags.on,</span>
+<span class="s">    notSticky : waypoints.flags.off</span>
+<span class="s">}"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>Angular Waypoints works by taking the control of the waypoints callback away from the developer.  When a waypoint is triggered by scrolling the page, the directive executes an internal callback that toggles a boolean flag based on the direction of the scroll.  These flags can be used by other directives (like <code>ngClass</code> or <code>ngIf</code>) to modify application state.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Install Angular Waypoints via <a href="http://bower.io/">bower</a>:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>bower install angular-waypoints
+</pre></div>
+
+<p>Angular Waypoints comes with several packaged versions:</p>
+
+<ul>
+<li>
+<code>dist/angular-waypoints.js</code> <strong>Development</strong> — AMD compatable, commented.</li>
+<li>
+<code>dist/angular-waypoints.min.js</code> <strong>Production</strong> — Minified, stripped of comments.</li>
+<li>
+<code>dist/angular-waypoints.all.js</code> <strong>Standalone</strong> — Same as the Development version, but includes unminified versions of lodash and jQuery Waypoints.</li>
+<li>
+<code>dist/angular-waypoints.all.min.js</code> <strong>Standalone Compressed</strong> — Same as the Standalone version, but minified.</li>
+<li>
+<code>dist/angular-waypoints.raw.js</code> <strong>Raw</strong> — This is a simple version that isn't very useful by itsself.  There is no <code>zumba.angular-waypoints</code> module.  The directive, controller, and service functions are all exposed to the global scope.  Use this if you want to package our code into another library, register individual components yourself, or do something custom.</li>
+</ul><h3>
+<a name="register-the-module-as-a-dependency" class="anchor" href="#register-the-module-as-a-dependency"><span class="octicon octicon-link"></span></a>Register the module as a dependency:</h3>
+
+<div class="highlight highlight-js"><pre><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'YourModule'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'zumba.angular-waypoints'</span><span class="p">]);</span>
+</pre></div>
+
+<p>Attach the <code>zum-waypoint</code> directive to each element for which you want to trigger a waypoint flag.  Each waypoint can be configured to use one flag for scrolling up, one flag for scrolling down, and an offset value if needed.  See the <a href="http://imakewebthings.com/jquery-waypoints/#doc-options">jQuery Waypoints Documentation</a> for an explanation of offset.</p>
+
+<p><code>up</code>, <code>down</code>, and <code>offset</code> are HTML attributes that are bound to the isolated scope of the directive.  Here is a full example of a template:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">zum-waypoint=</span><span class="s">"waypoints"</span>
+    <span class="na">down=</span><span class="s">"name.down"</span>
+    <span class="na">up=</span><span class="s">"name.up"</span>
+    <span class="na">offset=</span><span class="s">"20%"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<h4>
+<a name="breakdown-of-the-above-example" class="anchor" href="#breakdown-of-the-above-example"><span class="octicon octicon-link"></span></a>Breakdown of the above example</h4>
+
+<ol>
+<li>The <code>waypoints</code> property of the parent scope will be used to hold the flags triggered by the directive.  This is indicated by the expression passed to the bltWaypoint directive.  It should be a plain old javascript object <code>{}</code>.</li>
+<li>When the element is 20% away from the top of the viewport while scrolling down, <code>waypoints.name.down</code> will be set to <code>true</code>, and <code>waypoints.name.up</code> will be set to false.</li>
+<li>If the direction was scrolling up, <code>waypoints.name.down</code> will be set to <code>false</code>, and <code>waypoints.name.up</code> will be set to true.</li>
+</ol><h2>
+<a name="namespaced-flags" class="anchor" href="#namespaced-flags"><span class="octicon octicon-link"></span></a>Namespaced Flags</h2>
+
+<p>Notice that the examples have included a "namespace" for the flags (in the first exmaple <code>flags.up</code> has the <code>flags</code> namespace).  This allows you to use several groups of waypoints on the same view. When toggling a waypoint flag to <code>true</code>, all other flags that share the same namespace will be toggled to <code>false</code>.  Flags that exist in another namespace are left unchanged.</p>
+
+<p>If you do not use a namespace, the directive will store the flags inside a namespace called <code>globals</code>:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">zum-waypoint=</span><span class="s">"waypoints"</span>
+    <span class="na">down=</span><span class="s">"someFlag"</span>
+    <span class="na">up=</span><span class="s">"anotherFlag"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>The above flags would be accessed via <code>waypoints.globals.someFlag</code> and <code>waypoints.globals.anotherFlag</code></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/zumba">zumba</a> can be found on <a href="https://github.com/zumba/angular-waypoints">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
