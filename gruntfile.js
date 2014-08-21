@@ -11,9 +11,15 @@ module.exports = function(grunt) {
     });
 
     gruntConfig.wrap.files.options.wrapper = grunt.file.read('src/umd.js').split('/** src files **/');
-    gruntConfig.uglify.dist.files[0].rename = function(dest, src) {
+
+    var rename = function(dest, src) {
         return dest + src.replace('.js', '.min.js');
     };
+    _.each(gruntConfig.uglify, function(obj) {
+        if (obj.files) {
+            obj.files[0].rename = rename;
+        }
+    });
 
     // Project configuration.
     grunt.initConfig(gruntConfig);
@@ -24,8 +30,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-wrap');
 
-    grunt.registerTask('build-src', ['clean', 'concat:dist', 'wrap', 'concat:dependencies']);
-    grunt.registerTask('build-dist', ['jshint', 'uglify']);
+    grunt.registerTask('build-src', ['clean', 'concat:dist', 'wrap']);
+    grunt.registerTask('build-dist', ['jshint', 'uglify', 'concat:dependencies', 'concat:dependencies-min']);
     grunt.registerTask('test', ['build-src', 'build-dist', 'jasmine']);
     grunt.registerTask('default', ['test']);
 };
