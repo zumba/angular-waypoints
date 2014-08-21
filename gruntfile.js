@@ -24,7 +24,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-wrap');
 
-    grunt.registerTask('build-dist', ['clean', 'concat', 'wrap', 'jshint', 'uglify']);
-    grunt.registerTask('test', ['build-dist', 'jasmine']);
+    grunt.registerTask('build-src', ['clean', 'concat:dist', 'wrap', 'concat:dependencies']);
+    grunt.registerTask('build-dist', ['jshint', 'uglify']);
+    grunt.registerTask('test', ['build-src', 'build-dist', 'jasmine']);
     grunt.registerTask('default', ['test']);
 };
