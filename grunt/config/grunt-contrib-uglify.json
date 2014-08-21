@@ -1,0 +1,24 @@
+{
+    "uglify" : {
+        "options" : {
+            "mangle" : true,
+            "compress" : {
+                "drop_console": true
+            },
+            "sourceMap" : true,
+            "preserveComments" : false,
+            "banner" : "/**\n * Zumba(r) Angular Waypoints v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %>\n * <%= pkg.description %>\n *\n * Copyright (c) <%= grunt.template.today('yyyy') %> Zumba (r)\n * Licensed <%= pkg.license %>\n */\n"
+        },
+        "dist" : {
+            "files" : [
+                {
+                    "expand" : true,
+                    "cwd" : "dist/",
+                    "src" : "**/*.js",
+                    "dest": "dist/",
+                    "rename" : null
+                }
+            ]
+        }
+    }
+}

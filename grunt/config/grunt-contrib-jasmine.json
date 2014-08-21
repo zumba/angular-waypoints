@@ -1,7 +1,7 @@
 {
     "jasmine" : {
         "tests" : {
-            "src" : "dist/angular-waypoints.js",
+            "src" : "dist/angular-waypoints.min.js",
             "options" : {
                 "specs" : "test/spec/*.spec.js",
                 "vendor" : [
