@@ -14,7 +14,7 @@
                 {
                     "expand" : true,
                     "cwd" : "dist/",
-                    "src" : "**/*.js",
+                    "src" : ["**/*.js", "!**/*.raw.js"],
                     "dest": "dist/",
                     "rename" : null
                 }
