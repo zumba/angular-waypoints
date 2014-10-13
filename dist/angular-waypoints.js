@@ -2,15 +2,15 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['lodash', 'angular'], factory);
+        define(['angular'], factory);
     } else {
         // Browser globals
-        root.WaypointModule = factory(root._, root.angular);
+        root.WaypointModule = factory(root.angular);
     }
-}(this, function (_, angular) {
+}(this, function (angular) {
     
     /**
-     * Zumba(r) Angular Waypoints v1.0.0 - 2014-08-21
+     * Zumba(r) Angular Waypoints v1.0.1 - 2014-10-13
      * An AngularJS module for working with jQuery Waypoints
      *
      * Copyright (c) 2014 Zumba (r)
@@ -40,7 +40,7 @@
     	return function(direction) {
     		var waypoint = scope[direction];
     		if (waypoint) {
-    			timeout(_.bind(callback, null, waypoint));
+    			timeout($.proxy(callback, null, waypoint));
     		}
     	};
     };
@@ -64,18 +64,6 @@
     var WaypointController = function WaypointController($scope) {
     	$scope.waypoints = {};
     	this.$scope = $scope;
-    };
-    
-    /**
-     * Clear all current waypoints
-     *
-     * @param Boolean active
-     * @param String waypoint
-     * @param Object waypoints
-     * @return void
-     */
-    var clearWaypoints = function clearWaypoints(active, waypoint, waypoints) {
-    	waypoints[waypoint] = false;
     };
     
     /**
@@ -106,7 +94,9 @@
      * @param String waypoint
      */
     var setWaypoint = function setWaypoint(collection, waypoint) {
-    	_.each(collection, clearWaypoints);
+    	$.each(collection, function clearWaypoints(waypoint) {
+    		collection[waypoint] = false;
+    	});
     	collection[waypoint] = true;
     };
     
@@ -138,7 +128,7 @@
     			waypoints : '=?zumWaypoint'
     		},
     		link : function zumWaypointLink(scope, element, attrs, ctrl) {
-    			var callback = _.bind(ctrl.processWaypoint, ctrl);
+    			var callback = $.proxy(ctrl.processWaypoint, ctrl);
     			element.waypoint({
     				handler : WaypointService.getHandlerSync(scope, callback),
     				offset : scope.offset || 0

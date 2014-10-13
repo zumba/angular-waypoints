@@ -1,5 +1,5 @@
 /**
- * Zumba(r) Angular Waypoints v1.0.0 - 2014-08-21
+ * Zumba(r) Angular Waypoints v1.0.1 - 2014-10-13
  * An AngularJS module for working with jQuery Waypoints
  *
  * Copyright (c) 2014 Zumba (r)
@@ -29,7 +29,7 @@ WaypointService.prototype.getHandlerSync = function getHandlerSync(scope, callba
 	return function(direction) {
 		var waypoint = scope[direction];
 		if (waypoint) {
-			timeout(_.bind(callback, null, waypoint));
+			timeout($.proxy(callback, null, waypoint));
 		}
 	};
 };
@@ -53,18 +53,6 @@ var parsedWaypoints = {};
 var WaypointController = function WaypointController($scope) {
 	$scope.waypoints = {};
 	this.$scope = $scope;
-};
-
-/**
- * Clear all current waypoints
- *
- * @param Boolean active
- * @param String waypoint
- * @param Object waypoints
- * @return void
- */
-var clearWaypoints = function clearWaypoints(active, waypoint, waypoints) {
-	waypoints[waypoint] = false;
 };
 
 /**
@@ -95,7 +83,9 @@ var parseWaypoint = function parseWaypoint(qualifiedWaypoint) {
  * @param String waypoint
  */
 var setWaypoint = function setWaypoint(collection, waypoint) {
-	_.each(collection, clearWaypoints);
+	$.each(collection, function clearWaypoints(waypoint) {
+		collection[waypoint] = false;
+	});
 	collection[waypoint] = true;
 };
 
@@ -127,7 +117,7 @@ var zumWaypoint = function zumWaypoint(WaypointService) {
 			waypoints : '=?zumWaypoint'
 		},
 		link : function zumWaypointLink(scope, element, attrs, ctrl) {
-			var callback = _.bind(ctrl.processWaypoint, ctrl);
+			var callback = $.proxy(ctrl.processWaypoint, ctrl);
 			element.waypoint({
 				handler : WaypointService.getHandlerSync(scope, callback),
 				offset : scope.offset || 0

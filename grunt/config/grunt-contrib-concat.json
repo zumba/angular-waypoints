@@ -16,7 +16,6 @@
         },
         "dependencies" : {
             "src" : [
-                "bower_components/lodash/dist/lodash.js",
                 "bower_components/jquery-waypoints/waypoints.js",
                 "dist/angular-waypoints.js"
             ],
@@ -24,7 +23,6 @@
         },
         "dependencies-min" : {
             "src" : [
-                "bower_components/lodash/dist/lodash.min.js",
                 "bower_components/jquery-waypoints/waypoints.min.js",
                 "dist/angular-waypoints.min.js"
             ],

@@ -2,12 +2,12 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['lodash', 'angular'], factory);
+        define(['angular'], factory);
     } else {
         // Browser globals
-        root.WaypointModule = factory(root._, root.angular);
+        root.WaypointModule = factory(root.angular);
     }
-}(this, function (_, angular) {
+}(this, function (angular) {
     /** src files **/
     return angular.module('zumba.angular-waypoints', [])
         .controller('WaypointController', ['$scope', WaypointController])

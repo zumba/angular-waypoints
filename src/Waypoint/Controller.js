@@ -20,18 +20,6 @@ var WaypointController = function WaypointController($scope) {
 };
 
 /**
- * Clear all current waypoints
- *
- * @param Boolean active
- * @param String waypoint
- * @param Object waypoints
- * @return void
- */
-var clearWaypoints = function clearWaypoints(active, waypoint, waypoints) {
-	waypoints[waypoint] = false;
-};
-
-/**
  * Get a namespace for the waypoint
  *
  * @param String qualifiedWaypoint
@@ -59,7 +47,9 @@ var parseWaypoint = function parseWaypoint(qualifiedWaypoint) {
  * @param String waypoint
  */
 var setWaypoint = function setWaypoint(collection, waypoint) {
-	_.each(collection, clearWaypoints);
+	$.each(collection, function clearWaypoints(waypoint) {
+		collection[waypoint] = false;
+	});
 	collection[waypoint] = true;
 };
 
