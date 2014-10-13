@@ -1,6 +1,6 @@
 {
   "name": "angular-waypoints",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An AngularJS module for working with jQuery Waypoints",
   "main": "dist/angular-waypoints.js",
   "license": "MIT",
@@ -37,7 +37,6 @@
   ],
   "private": false,
   "dependencies": {
-    "lodash": "~2.4.1",
     "jquery-waypoints": "~2.0.5",
     "angular": "~1.2.22",
     "jquery": "~2.1.1"

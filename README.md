@@ -5,7 +5,6 @@
 ## Dependencies
 * [AngularJS](https://angularjs.org/)
 * [jQuery](http://jquery.com/) &amp; [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/)
-* [lodash](http://lodash.com/)
 
 ## Non-Angular Waypoints Example
 
@@ -50,7 +49,7 @@ Angular Waypoints comes with several packaged versions:
 
 * `dist/angular-waypoints.js` **Development** &mdash; AMD compatable, commented.
 * `dist/angular-waypoints.min.js` **Production** &mdash; Minified, stripped of comments.
-* `dist/angular-waypoints.all.js` **Standalone** &mdash; Same as the Development version, but includes unminified versions of lodash and jQuery Waypoints.
+* `dist/angular-waypoints.all.js` **Standalone** &mdash; Same as the Development version, but includes unminified version of jQuery Waypoints.
 * `dist/angular-waypoints.all.min.js` **Standalone Compressed** &mdash; Same as the Standalone version, but minified.
 * `dist/angular-waypoints.raw.js` **Raw** &mdash; This is a simple version that isn't very useful by itsself.  There is no `zumba.angular-waypoints` module.  The directive, controller, and service functions are all exposed to the global scope.  Use this if you want to package our code into another library, register individual components yourself, or do something custom.
 

@@ -8,7 +8,7 @@ var zumWaypoint = function zumWaypoint(WaypointService) {
 			waypoints : '=?zumWaypoint'
 		},
 		link : function zumWaypointLink(scope, element, attrs, ctrl) {
-			var callback = _.bind(ctrl.processWaypoint, ctrl);
+			var callback = $.proxy(ctrl.processWaypoint, ctrl);
 			element.waypoint({
 				handler : WaypointService.getHandlerSync(scope, callback),
 				offset : scope.offset || 0
