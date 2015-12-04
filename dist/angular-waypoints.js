@@ -10,7 +10,7 @@
 }(this, function (angular) {
 	
 	/**
-	 * Zumba(r) Angular Waypoints v1.2.0 - 2015-12-04
+	 * Zumba(r) Angular Waypoints v2.0.0 - 2015-12-04
 	 * An AngularJS module for working with Waypoints
 	 *
 	 * Copyright (c) 2015 Zumba (r)
