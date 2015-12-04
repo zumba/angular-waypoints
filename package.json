@@ -1,6 +1,6 @@
 {
   "name": "angular-waypoints",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "An AngularJS module for working with Waypoints",
   "main": "dist/angular-waypoints.js",
   "scripts": {
