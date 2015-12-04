@@ -8,7 +8,7 @@ var zumWaypoint = function zumWaypoint($window, WaypointService) {
 			waypoints : '=?zumWaypoint'
 		},
 		link : function zumWaypointLink(scope, element, attrs, ctrl) {
-			var callback = $.proxy(ctrl.processWaypoint, ctrl);
+			var callback = angular.bind(ctrl, ctrl.processWaypoint);
 			/*jshint -W031 */
 			new $window.Waypoint({
 				element: element[0],

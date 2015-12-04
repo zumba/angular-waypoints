@@ -25,6 +25,8 @@
 		 */
 		var getHandlerSyncSpy;
 
+		var addedElements;
+
 		beforeEach(module('zumWaypointTest', function($provide) {
 			$provide.decorator('WaypointService', function($delegate) {
 				$delegate.getHandlerSync = getHandlerSyncSpy = jasmine.createSpy('getHandlerSync')
@@ -34,11 +36,13 @@
 		}));
 
 		beforeEach(inject(function($compile, $rootScope) {
+			addedElements = [];
 			injectWaypoint = function(template) {
 				var scope = $rootScope.$new();
 
 				template = angular.element(template);
-				angular.element('body').append(template);
+				angular.element(document).find('body').append(template);
+				addedElements.push(template);
 
 				$compile(template)(scope);
 				scope.$digest();
@@ -49,7 +53,7 @@
 
 		afterEach(function() {
 			Waypoint.destroyAll();
-			$('[zum-waypoint]').remove();
+			angular.element(addedElements).remove();
 		});
 
 		it('creates a waypoint for the element with the directive attribute',function() {
@@ -58,7 +62,7 @@
 		});
 
 		it('requests a handler function from the Waypoint service', function() {
-			var scope = injectWaypoint('<div zum-waypoint />').scope;
+			var scope = injectWaypoint('<div id="myWaypoint" zum-waypoint />').scope;
 			expect(getHandlerSyncSpy).toHaveBeenCalledWith(scope, jasmine.any(Function));
 		});
 

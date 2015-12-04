@@ -1,7 +1,7 @@
 {
   "name": "angular-waypoints",
   "version": "1.0.2",
-  "description": "An AngularJS module for working with jQuery Waypoints",
+  "description": "An AngularJS module for working with Waypoints",
   "main": "dist/angular-waypoints.js",
   "scripts": {
     "test": "grunt test"
@@ -13,7 +13,6 @@
   "keywords": [
     "angular",
     "waypoints",
-    "jquery",
     "scroll"
   ],
   "author": "Stephen Young <stephen.young@zumba.com>",

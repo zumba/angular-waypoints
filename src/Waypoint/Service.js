@@ -22,7 +22,7 @@ WaypointService.prototype.getHandlerSync = function getHandlerSync(scope, callba
 	return function(direction) {
 		var waypoint = scope[direction];
 		if (waypoint) {
-			timeout($.proxy(callback, null, waypoint));
+			timeout(angular.bind(null, callback, waypoint));
 		}
 	};
 };

@@ -1,7 +1,7 @@
 {
   "name": "angular-waypoints",
   "version": "1.0.2",
-  "description": "An AngularJS module for working with jQuery Waypoints",
+  "description": "An AngularJS module for working with Waypoints",
   "main": "dist/angular-waypoints.js",
   "license": "MIT",
   "ignore": [
@@ -16,7 +16,6 @@
   "keywords": [
     "angular",
     "waypoints",
-    "jquery",
     "scroll"
   ],
   "authors": [
@@ -37,9 +36,8 @@
   ],
   "private": false,
   "dependencies": {
-    "jquery-waypoints": "~2.0.5",
-    "angular": "~1.2.22",
-    "jquery": "~2.1.1"
+    "waypoints": "~4.0.0",
+    "angular": "~1.2.26"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.22"

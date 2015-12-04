@@ -47,7 +47,7 @@ var parseWaypoint = function parseWaypoint(qualifiedWaypoint) {
  * @param String waypoint
  */
 var setWaypoint = function setWaypoint(collection, waypoint) {
-	$.each(collection, function clearWaypoints(waypoint) {
+	angular.forEach(collection, function (value, waypoint) {
 		collection[waypoint] = false;
 	});
 	collection[waypoint] = true;
