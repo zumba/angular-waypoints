@@ -16,14 +16,14 @@
     },
     "dependencies" : {
       "src" : [
-        "bower_components/jquery-waypoints/waypoints.js",
+        "bower_components/waypoints/lib/noframework.waypoints.js",
         "dist/angular-waypoints.js"
       ],
       "dest" : "dist/angular-waypoints.all.js"
     },
     "dependencies-min" : {
       "src" : [
-        "bower_components/jquery-waypoints/waypoints.min.js",
+        "bower_components/waypoints/lib/noframework.waypoints.js",
         "dist/angular-waypoints.min.js"
       ],
       "dest" : "dist/angular-waypoints.all.min.js"

@@ -11,6 +11,6 @@
 	/** src files **/
 	return angular.module('zumba.angular-waypoints', [])
 		.controller('WaypointController', ['$scope', WaypointController])
-		.directive('zumWaypoint', ['WaypointService', zumWaypoint])
+		.directive('zumWaypoint', ['$window', 'WaypointService', zumWaypoint])
 		.service('WaypointService', ['$timeout', WaypointService]);
 }));

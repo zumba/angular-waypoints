@@ -1,4 +1,4 @@
-var zumWaypoint = function zumWaypoint(WaypointService) {
+var zumWaypoint = function zumWaypoint($window, WaypointService) {
 	return {
 		controller : 'WaypointController',
 		scope : {
@@ -9,7 +9,9 @@ var zumWaypoint = function zumWaypoint(WaypointService) {
 		},
 		link : function zumWaypointLink(scope, element, attrs, ctrl) {
 			var callback = $.proxy(ctrl.processWaypoint, ctrl);
-			element.waypoint({
+			/*jshint -W031 */
+			new $window.Waypoint({
+				element: element[0],
 				handler : WaypointService.getHandlerSync(scope, callback),
 				offset : scope.offset || 0
 			});
