@@ -1,8 +1,8 @@
 /**
- * Zumba(r) Angular Waypoints v1.0.1 - 2014-10-13
+ * Zumba(r) Angular Waypoints v1.0.2 - 2015-12-04
  * An AngularJS module for working with jQuery Waypoints
  *
- * Copyright (c) 2014 Zumba (r)
+ * Copyright (c) 2015 Zumba (r)
  * Licensed MIT
  */
 /**
@@ -107,6 +107,7 @@ WaypointController.prototype.processWaypoint = function processWaypoint(qualifie
 
 	setWaypoint(waypoints[namespace], data.waypoint);
 };
+
 var zumWaypoint = function zumWaypoint(WaypointService) {
 	return {
 		controller : 'WaypointController',

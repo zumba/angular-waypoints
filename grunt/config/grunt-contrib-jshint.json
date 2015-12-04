@@ -1,8 +1,8 @@
 {
-    "jshint" : {
-        "options" : {
-            "jshintrc" : ".jshintrc"
-        },
-        "source" : ["./gruntfile.js", "test/**/*.js", "dist/angular-waypoints.js"]
-    }
+  "jshint" : {
+    "options" : {
+      "jshintrc" : ".jshintrc"
+    },
+    "source" : ["./gruntfile.js", "test/**/*.js", "dist/angular-waypoints.js"]
+  }
 }

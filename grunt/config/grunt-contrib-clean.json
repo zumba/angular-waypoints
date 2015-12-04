@@ -1,5 +1,5 @@
 {
-    "clean" : {
-        "dist" : ["dist/"]
-    }
+  "clean" : {
+    "dist" : ["dist/"]
+  }
 }
