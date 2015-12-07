@@ -15,6 +15,7 @@ var zumWaypoint = function zumWaypoint($window, WaypointService) {
 				handler : WaypointService.getHandlerSync(scope, callback),
 				offset : scope.offset || 0
 			});
+			/*jshint +W031 */
 		}
 	};
 };
