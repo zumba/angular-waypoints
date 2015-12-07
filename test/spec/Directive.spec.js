@@ -1,4 +1,4 @@
-/* globals angular */
+/* globals angular, Waypoint */
 ;(function() {
 	"use strict";
 
@@ -25,48 +25,49 @@
 		 */
 		var getHandlerSyncSpy;
 
+		var addedElements;
+
 		beforeEach(module('zumWaypointTest', function($provide) {
 			$provide.decorator('WaypointService', function($delegate) {
-				$delegate.getHandlerSync = getHandlerSyncSpy = jasmine.createSpy('getHandlerSync');
+				$delegate.getHandlerSync = getHandlerSyncSpy = jasmine.createSpy('getHandlerSync')
+					.and.returnValue(function() {});
 				return $delegate;
 			});
 		}));
 
 		beforeEach(inject(function($compile, $rootScope) {
+			addedElements = [];
 			injectWaypoint = function(template) {
 				var scope = $rootScope.$new();
 
 				template = angular.element(template);
-				angular.element('body').append(template);
+				angular.element(document).find('body').append(template);
+				addedElements.push(template);
 
 				$compile(template)(scope);
 				scope.$digest();
 
-				return scope.$$childHead;
+				return {scope: scope.$$childHead, element: template};
 			};
 		}));
 
 		afterEach(function() {
-			$.waypoints('destroy');
-			$('[zum-waypoint]').remove();
+			Waypoint.destroyAll();
+			angular.element(addedElements).remove();
 		});
 
-		it('attaches a jQuery waypoint to the element with the directive attribute', function() {
-			var waypoints;
-
-			injectWaypoint('<div zum-waypoint />');
-			waypoints = $.waypoints();
-
-			expect(waypoints.vertical[0]).toBe($('[zum-waypoint]').get(0));
+		it('creates a waypoint for the element with the directive attribute',function() {
+			var element = injectWaypoint('<div zum-waypoint />').element;
+			expect(Waypoint.Context.findByElement(element)).not.toBeNull();
 		});
 
 		it('requests a handler function from the Waypoint service', function() {
-			var scope = injectWaypoint('<div zum-waypoint />');
+			var scope = injectWaypoint('<div id="myWaypoint" zum-waypoint />').scope;
 			expect(getHandlerSyncSpy).toHaveBeenCalledWith(scope, jasmine.any(Function));
 		});
 
 		it('retrieves the up, down, and offset attributes', function() {
-			var scope = injectWaypoint('<div zum-waypoint up="a" down="b" offset="c" poop="💩" />');
+			var scope = injectWaypoint('<div zum-waypoint up="a" down="b" offset="c" poop="💩" />').scope;
 			expect(scope.up).toBe('a');
 			expect(scope.down).toBe('b');
 			expect(scope.offset).toBe('c');
@@ -74,7 +75,7 @@
 		});
 
 		it('binds the directive waypoints to the parent scope attribute defined by the template', function() {
-			var scope = injectWaypoint('<div zum-waypoint="testPoints" />');
+			var scope = injectWaypoint('<div zum-waypoint="testPoints" />').scope;
 			expect(scope.waypoints).toBe(scope.$parent.testPoints);
 		});
 	});

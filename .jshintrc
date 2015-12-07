@@ -21,7 +21,7 @@
     "trailing": true,
     "maxcomplexity" : 8,
     "maxlen" : 120,
-    "jquery" : true,
+    "jquery" : false,
     "node" : true,
     "evil" : false,
     "regexdash" : false,

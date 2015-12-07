@@ -1,24 +1,27 @@
 [![Build Status](https://travis-ci.org/zumba/angular-waypoints.svg?branch=master)](https://travis-ci.org/zumba/angular-waypoints)
 
-**Angular Waypoints** is an AngularJS module for working with [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/).
+**Angular Waypoints** is an AngularJS module for working with [Waypoints](http://imakewebthings.com/waypoints/) (formerly [jQuery Waypoints](https://github.com/imakewebthings/jquery-waypoints)).
 
 ## Dependencies
 * [AngularJS](https://angularjs.org/)
-* [jQuery](http://jquery.com/) &amp; [jQuery Waypoints](http://imakewebthings.com/jquery-waypoints/)
+* [Waypoints](http://imakewebthings.com/waypoints/)
 
 ## Non-Angular Waypoints Example
 
-> Waypoints is a jQuery plugin that makes it easy to execute a function whenever you scroll to an element.
+> Waypoints is the easiest way to trigger a function when you scroll to an element.
 
 ```js
-// example from http://imakewebthings.com/jquery-waypoints/
+// example from http://imakewebthings.com/waypoints/
 
-$('.thing').waypoint(function(direction) {
-  alert('Top of thing hit top of viewport.');
+var waypoint = new Waypoint({
+  element: document.getElementById('waypoint'),
+  handler: function(direction) {
+    console.log('Scrolled to waypoint!');
+  }
 });
 ```
 
-The above example from the jQuery waypoints homepage works well for most situations.  However, if you were to put the above code inside an AngularJS directive, you end up with a couple of drawbacks:
+The above example from the waypoints homepage works well for most situations.  However, if you were to put the above code inside an AngularJS directive, you end up with a couple of drawbacks:
 
 * The waypoints implementation is hidden from the HTML.  All you know is that a directive is doing *something*, but you do not know the contents of the callback function.
 * If you modify a scope property in your callback, you'll need to manually call `$scope.$digest` to let angular process this new information.
@@ -49,7 +52,7 @@ Angular Waypoints comes with several packaged versions:
 
 * `dist/angular-waypoints.js` **Development** &mdash; AMD compatable, commented.
 * `dist/angular-waypoints.min.js` **Production** &mdash; Minified, stripped of comments.
-* `dist/angular-waypoints.all.js` **Standalone** &mdash; Same as the Development version, but includes unminified version of jQuery Waypoints.
+* `dist/angular-waypoints.all.js` **Standalone** &mdash; Same as the Development version, but includes unminified version of Waypoints.
 * `dist/angular-waypoints.all.min.js` **Standalone Compressed** &mdash; Same as the Standalone version, but minified.
 * `dist/angular-waypoints.raw.js` **Raw** &mdash; This is a simple version that isn't very useful by itsself.  There is no `zumba.angular-waypoints` module.  The directive, controller, and service functions are all exposed to the global scope.  Use this if you want to package our code into another library, register individual components yourself, or do something custom.
 
@@ -59,7 +62,7 @@ Angular Waypoints comes with several packaged versions:
 angular.module('YourModule', ['zumba.angular-waypoints']);
 ```
 
-Attach the `zum-waypoint` directive to each element for which you want to trigger a waypoint flag.  Each waypoint can be configured to use one flag for scrolling up, one flag for scrolling down, and an offset value if needed.  See the [jQuery Waypoints Documentation](http://imakewebthings.com/jquery-waypoints/#doc-options) for an explanation of offset.
+Attach the `zum-waypoint` directive to each element for which you want to trigger a waypoint flag.  Each waypoint can be configured to use one flag for scrolling up, one flag for scrolling down, and an offset value if needed.  See the [Waypoints Documentation](http://imakewebthings.com/waypoints/api/offset-option/) for an explanation of offset.
 
 `up`, `down`, and `offset` are HTML attributes that are bound to the isolated scope of the directive.  Here is a full example of a template:
 
@@ -71,9 +74,9 @@ Attach the `zum-waypoint` directive to each element for which you want to trigge
 ```
 #### Breakdown of the above example
 
-1. The `waypoints` property of the parent scope will be used to hold the flags triggered by the directive.  This is indicated by the expression passed to the bltWaypoint directive.  It should be a plain old javascript object `{}`.
-2. When the element is 20% away from the top of the viewport while scrolling down, `waypoints.name.down` will be set to `true`, and `waypoints.name.up` will be set to false.
-3. If the direction was scrolling up, `waypoints.name.down` will be set to `false`, and `waypoints.name.up` will be set to true.
+1. The `waypoints` property of the parent scope will be used to hold the flags triggered by the directive.  This is indicated by the expression passed to the bltWaypoint directive.  It will be initialized to an empty javascript object `{}`.
+2. When the element is 20% away from the top of the viewport while scrolling down, `waypoints.name.down` will be set to `true`, and `waypoints.name.up` will be set to `false`.
+3. If the direction was scrolling up, `waypoints.name.down` will be set to `false`, and `waypoints.name.up` will be set to `true`.
 
 ## Namespaced Flags
 
