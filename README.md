@@ -4,6 +4,7 @@
 
 ## Dependencies
 * [AngularJS](https://angularjs.org/)
+* [Waypoints](http://imakewebthings.com/waypoints/)
 
 ## Non-Angular Waypoints Example
 
