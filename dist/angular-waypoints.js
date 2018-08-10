@@ -10,10 +10,10 @@
 }(this, function (angular) {
 	
 	/**
-	 * Zumba(r) Angular Waypoints v2.0.0 - 2015-12-04
+	 * Zumba(r) Angular Waypoints v2.0.0 - 2018-08-09
 	 * An AngularJS module for working with Waypoints
 	 *
-	 * Copyright (c) 2015 Zumba (r)
+	 * Copyright (c) 2018 Zumba (r)
 	 * Licensed MIT
 	 */
 	/**
@@ -136,6 +136,7 @@
 					handler : WaypointService.getHandlerSync(scope, callback),
 					offset : scope.offset || 0
 				});
+				/*jshint +W031 */
 			}
 		};
 	};

@@ -2,7 +2,7 @@
 Waypoints - 4.0.0
 Copyright © 2011-2015 Caleb Troughton
 Licensed under the MIT license.
-https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
+https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 */
 (function() {
   'use strict'
@@ -755,10 +755,10 @@ https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
 }(this, function (angular) {
 	
 	/**
-	 * Zumba(r) Angular Waypoints v2.0.0 - 2015-12-04
+	 * Zumba(r) Angular Waypoints v2.0.0 - 2018-08-09
 	 * An AngularJS module for working with Waypoints
 	 *
-	 * Copyright (c) 2015 Zumba (r)
+	 * Copyright (c) 2018 Zumba (r)
 	 * Licensed MIT
 	 */
 	/**
@@ -881,6 +881,7 @@ https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
 					handler : WaypointService.getHandlerSync(scope, callback),
 					offset : scope.offset || 0
 				});
+				/*jshint +W031 */
 			}
 		};
 	};
