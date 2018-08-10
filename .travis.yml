@@ -1,9 +1,21 @@
+dist: trusty
+
 language: node_js
-node_js: 0.10
+node_js:
+  - "8"
+  - "10"
+
+sudo: required # Needed for Puppeteer
+
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 before_script:
   - npm install grunt-cli -g
   - npm install bower -g
   - npm install
   - bower install
+
 script:
   - grunt;
